@@ -5,11 +5,10 @@ module.exports = (io) => {
         console.log(`${socket.id} user connected`);
 
 
+        io.emit('message', 'A new user has joined.');
+
 
         socket.on("disconnect", () => {
-            hashmap.delete(socket.buzz_name);
-            clearInterval(sendNearbyUsersInterval);
-            io.emit("info", { event: "disconnect", data: { buzz_name: socket.buzz_name } });
             console.log(`${socket.id} disconnected`);
         });
     });
